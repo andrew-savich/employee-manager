@@ -16,9 +16,9 @@ public class DepartmentController {
 
     @GetMapping("/all")
     public ResponseEntity<List<Department>> getDepartmentsList(){
-        List<Department> employees = departmentService.getAllDepartments();
+        List<Department> departments = departmentService.getAllDepartments();
 
-        return ResponseEntity.ok(employees);
+        return ResponseEntity.ok(departments);
     }
 
     @GetMapping("/get/{id}")
