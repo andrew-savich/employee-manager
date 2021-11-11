@@ -16,6 +16,6 @@ public class Employee {
     private String jobTitle;
     private Date dateOfBirth;
     private Gender gender;
-    private Long departmentId;
+    private Department department;
 
 }
