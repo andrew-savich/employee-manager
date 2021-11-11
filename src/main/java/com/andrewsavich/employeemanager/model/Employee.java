@@ -4,7 +4,7 @@ import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Data
 @Table("employees")
@@ -14,8 +14,7 @@ public class Employee {
     private String firstName;
     private String lastName;
     private String jobTitle;
-    private Date dateOfBirth;
+    private LocalDate dateOfBirth;
     private Gender gender;
     private Department department;
-
 }

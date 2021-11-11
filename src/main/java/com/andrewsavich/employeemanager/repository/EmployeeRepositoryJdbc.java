@@ -17,14 +17,14 @@ public class EmployeeRepositoryJdbc implements EmployeeRepository {
 
     @Override
     public int create(Employee employee) {
-        return jdbcTemplate.update("INSERT INTO employees (first_name, last_name, job_title, date_of_birth, gender, department) VALUES(?,?,?,?,?,?,?)",
-                new Object[] { employee.getFirstName(), employee.getLastName(), employee.getJobTitle(), employee.getDateOfBirth(), employee.getGender(), employee.getDepartment()});
+        return jdbcTemplate.update("INSERT INTO employees (first_name, last_name, job_title, date_of_birth, gender, department) VALUES(?,?,?,?,?,?)",
+                new Object[] { employee.getFirstName(), employee.getLastName(), employee.getJobTitle(), employee.getDateOfBirth(), employee.getGender().toString(), employee.getDepartment().toString()});
     }
 
     @Override
     public int update(Employee employee) {
-        return jdbcTemplate.update("UPDATE employees SET first_name=?, last_name=?, job_title=?, date_of_birth=?, gender=?, department_id=? WHERE id=?",
-                new Object[] { employee.getFirstName(), employee.getLastName(), employee.getJobTitle(), employee.getDateOfBirth(), employee.getGender(), employee.getDepartment(), employee.getId() });
+        return jdbcTemplate.update("UPDATE employees SET first_name=?, last_name=?, job_title=?, date_of_birth=?, gender=?, department=? WHERE id=?",
+                new Object[] { employee.getFirstName(), employee.getLastName(), employee.getJobTitle(), employee.getDateOfBirth(), employee.getGender().toString(), employee.getDepartment().toString(), employee.getId() });
     }
 
     @Override
