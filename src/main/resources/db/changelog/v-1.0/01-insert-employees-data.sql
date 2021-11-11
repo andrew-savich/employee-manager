@@ -1,5 +1,5 @@
 INSERT INTO employees
-(first_name, last_name, job_title, date_of_birth, gender, department_id)
+(first_name, last_name, job_title, date_of_birth, gender, department)
 VALUES
     ('Andrew', 'Savich', 'JavaWebDev', '09-07-1990', 'MALE', 'DEVELOPMENT'),
     ('Vitaly', 'Trafimovich', 'QA Tester', '03-09-1994', 'MALE', 'TESTING'),
