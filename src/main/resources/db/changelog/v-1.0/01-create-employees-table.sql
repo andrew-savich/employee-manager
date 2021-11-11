@@ -5,6 +5,6 @@ create table employees(
     job_title varchar(255) not null,
     date_of_birth date,
     gender varchar(255) not null,
-    department_id bigint
+    department varchar(255) not null
 );
 GO
