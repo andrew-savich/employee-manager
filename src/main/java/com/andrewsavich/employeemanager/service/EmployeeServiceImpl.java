@@ -1,10 +1,13 @@
 package com.andrewsavich.employeemanager.service;
 
+import com.andrewsavich.employeemanager.model.Department;
 import com.andrewsavich.employeemanager.model.Employee;
+import com.andrewsavich.employeemanager.model.Gender;
 import com.andrewsavich.employeemanager.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -35,5 +38,15 @@ public class EmployeeServiceImpl implements EmployeeService{
     @Override
     public void deleteEmployeeById(Long id) {
         employeeRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Gender> getEmployeeGenders() {
+        return Arrays.asList(Gender.values());
+    }
+
+    @Override
+    public List<Department> getEmployeeDepartments() {
+        return Arrays.asList(Department.values());
     }
 }

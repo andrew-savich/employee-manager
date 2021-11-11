@@ -1,6 +1,8 @@
 package com.andrewsavich.employeemanager.controller;
 
+import com.andrewsavich.employeemanager.model.Department;
 import com.andrewsavich.employeemanager.model.Employee;
+import com.andrewsavich.employeemanager.model.Gender;
 import com.andrewsavich.employeemanager.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,10 +18,20 @@ public class EmployeeController {
     private EmployeeService employeeService;
 
     @GetMapping("/all")
-    public ResponseEntity<List<Employee>> getDepartmentsList(){
+    public ResponseEntity<List<Employee>> getEmployeesList(){
         List<Employee> employees = employeeService.getAllEmployees();
 
         return ResponseEntity.ok(employees);
+    }
+
+    @GetMapping("/genders")
+    public List<Gender> getGenderList(){
+        return employeeService.getEmployeeGenders();
+    }
+
+    @GetMapping("/departments")
+    public List<Department> getDepartmentList(){
+        return employeeService.getEmployeeDepartments();
     }
 
     @GetMapping("/get/{id}")
