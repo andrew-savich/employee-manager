@@ -1,16 +1,16 @@
 package com.andrewsavich.employeemanager.controller;
 
-import com.andrewsavich.employeemanager.model.department.Department;
-import com.andrewsavich.employeemanager.model.employee.Employee;
-import com.andrewsavich.employeemanager.service.employee.EmployeeService;
+import com.andrewsavich.employeemanager.model.Employee;
+import com.andrewsavich.employeemanager.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:3000/")
 @RestController
-@RequestMapping("/api/employee")
+@RequestMapping("/employee-manager/api/employee")
 public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;

@@ -1,6 +1,6 @@
-package com.andrewsavich.employeemanager.repository.employee;
+package com.andrewsavich.employeemanager.repository;
 
-import com.andrewsavich.employeemanager.model.employee.Employee;
+import com.andrewsavich.employeemanager.model.Employee;
 
 import java.util.List;
 

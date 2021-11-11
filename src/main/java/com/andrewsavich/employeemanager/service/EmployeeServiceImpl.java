@@ -1,7 +1,7 @@
-package com.andrewsavich.employeemanager.service.employee;
+package com.andrewsavich.employeemanager.service;
 
-import com.andrewsavich.employeemanager.model.employee.Employee;
-import com.andrewsavich.employeemanager.repository.employee.EmployeeRepository;
+import com.andrewsavich.employeemanager.model.Employee;
+import com.andrewsavich.employeemanager.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

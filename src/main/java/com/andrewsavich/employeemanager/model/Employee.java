@@ -1,4 +1,4 @@
-package com.andrewsavich.employeemanager.model.employee;
+package com.andrewsavich.employeemanager.model;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
@@ -18,12 +18,4 @@ public class Employee {
     private Gender gender;
     private Long departmentId;
 
-    public Employee(String firstName, String lastName, String jobTitle, Date dateOfBirth, Gender gender, Long departmentId) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.jobTitle = jobTitle;
-        this.dateOfBirth = dateOfBirth;
-        this.gender = gender;
-        this.departmentId = departmentId;
-    }
 }
