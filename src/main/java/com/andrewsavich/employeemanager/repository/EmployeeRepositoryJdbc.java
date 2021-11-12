@@ -30,19 +30,19 @@ public class EmployeeRepositoryJdbc implements EmployeeRepository {
     }
 
     @Override
-    public void create(Employee employee) {
-        jdbcTemplate.update("INSERT INTO employees (first_name, last_name, job_title, date_of_birth, gender, department) VALUES(?,?,?,?,?,?)",
+    public int create(Employee employee) {
+        return jdbcTemplate.update("INSERT INTO employees (first_name, last_name, job_title, date_of_birth, gender, department) VALUES(?,?,?,?,?,?)",
                 employee.getFirstName(), employee.getLastName(), employee.getJobTitle(), employee.getDateOfBirth(), employee.getGender().toString(), employee.getDepartment().toString());
     }
 
     @Override
-    public void update(Employee employee) {
-        jdbcTemplate.update("UPDATE employees SET first_name=?, last_name=?, job_title=?, date_of_birth=?, gender=?, department=? WHERE id=?",
+    public int update(Employee employee) {
+        return jdbcTemplate.update("UPDATE employees SET first_name=?, last_name=?, job_title=?, date_of_birth=?, gender=?, department=? WHERE id=?",
                 employee.getFirstName(), employee.getLastName(), employee.getJobTitle(), employee.getDateOfBirth(), employee.getGender().toString(), employee.getDepartment().toString(), employee.getId());
     }
 
     @Override
-    public void deleteById(long id) {
-        jdbcTemplate.update("DELETE FROM employees WHERE id=?", id);
+    public int deleteById(long id) {
+        return jdbcTemplate.update("DELETE FROM employees WHERE id=?", id);
     }
 }
