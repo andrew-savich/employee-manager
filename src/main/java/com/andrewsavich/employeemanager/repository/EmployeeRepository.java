@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface EmployeeRepository {
     List<Employee> findAll();
-    void create (Employee employee);
-    void update (Employee employee);
+    int create (Employee employee);
+    int update (Employee employee);
     Employee findById(long id);
-    void deleteById(long id);
+    int deleteById(long id);
 }
