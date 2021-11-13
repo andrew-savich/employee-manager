@@ -21,9 +21,7 @@ public class EmployeeController {
 
     @GetMapping("/all")
     public ResponseEntity<List<Employee>> getEmployeesList(){
-        List<Employee> employees = employeeService.getAllEmployees();
-
-        return ResponseEntity.ok(employees);
+        return ResponseEntity.ok(employeeService.getAllEmployees());
     }
 
     @GetMapping("/genders")
