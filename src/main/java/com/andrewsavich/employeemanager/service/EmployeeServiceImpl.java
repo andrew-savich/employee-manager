@@ -1,5 +1,6 @@
 package com.andrewsavich.employeemanager.service;
 
+import com.andrewsavich.employeemanager.exception.EmployeeNotFoundException;
 import com.andrewsavich.employeemanager.model.Department;
 import com.andrewsavich.employeemanager.model.Employee;
 import com.andrewsavich.employeemanager.model.Gender;
@@ -22,7 +23,12 @@ public class EmployeeServiceImpl implements EmployeeService{
 
     @Override
     public Employee getEmployeeById(Long id) {
-        return employeeRepository.findById(id);
+        Employee employee = employeeRepository.findById(id);
+        if(employee == null){
+            throw new EmployeeNotFoundException("Employee with id: " + id + " not found");
+        }
+
+        return employee;
     }
 
     @Override
