@@ -1,5 +1,6 @@
 package com.andrewsavich.employeemanager.service;
 
+import com.andrewsavich.employeemanager.exception.EmployeeNotFoundException;
 import com.andrewsavich.employeemanager.model.Department;
 import com.andrewsavich.employeemanager.model.Employee;
 import com.andrewsavich.employeemanager.model.Gender;
@@ -61,15 +62,10 @@ public class EmployeeServiceTest {
     }
 
     @Test
-    void findByIdNotFound() {
-        //given
-        given(employeeRepository.findById(anyLong())).willReturn(null);
-        //when
-        Employee returnedAnswer = employeeService.getEmployeeById(1L);
-        //then
-        then(employeeRepository).should(times(1)).findById(anyLong());
-        assertNull(returnedAnswer);
-        verifyNoMoreInteractions(employeeRepository);
+    void findByIdNotFound_shouldThrowsEmployeeNotFoundException() {
+        when(employeeRepository.findById(anyLong())).thenThrow(new EmployeeNotFoundException("Employee not found"));
+
+        assertThrows(EmployeeNotFoundException.class, () -> employeeService.getEmployeeById(666L));
     }
 
     @Test
