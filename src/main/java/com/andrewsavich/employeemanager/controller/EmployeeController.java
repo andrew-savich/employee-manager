@@ -21,16 +21,22 @@ public class EmployeeController {
 
     @GetMapping("/all")
     public ResponseEntity<List<Employee>> getEmployeesList(){
+        log.info("Controller: Getting employee list");
+
         return ResponseEntity.ok(employeeService.getAllEmployees());
     }
 
     @GetMapping("/genders")
     public List<Gender> getGenderList(){
+        log.info("Controller: getting genders");
+
         return employeeService.getEmployeeGenders();
     }
 
     @GetMapping("/departments")
     public List<Department> getDepartmentList(){
+        log.info("Controller: getting departments");
+
         return employeeService.getEmployeeDepartments();
     }
 
@@ -59,6 +65,8 @@ public class EmployeeController {
 
     @DeleteMapping("/delete/{id}")
     public void deleteEmployeeById(@PathVariable Long id){
+        log.info("Controller: Deleting employee with id: " + id);
+
         employeeService.deleteEmployeeById(id);
     }
 
