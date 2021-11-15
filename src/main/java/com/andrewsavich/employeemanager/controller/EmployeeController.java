@@ -36,9 +36,9 @@ public class EmployeeController {
 
     @GetMapping("/get/{id}")
     public ResponseEntity<Employee> getEmployeeById(@PathVariable Long id){
-        log.info("Getting employee with id: " + id);
+        log.info("Controller: Getting employee with id: " + id);
         Employee employee = employeeService.getEmployeeById(id);
-        log.info("Fetching employee: " + employee);
+        log.info("Controller: Sending employee: " + employee);
 
         return ResponseEntity.ok(employee);
     }
