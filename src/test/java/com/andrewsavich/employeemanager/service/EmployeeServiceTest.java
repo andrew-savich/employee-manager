@@ -13,7 +13,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.BDDMockito.given;
@@ -33,15 +32,7 @@ public class EmployeeServiceTest {
 
     @BeforeEach
     void setUp(){
-        employee = Employee.builder()
-                .id(1L)
-                .firstName("Petr")
-                .lastName("Petrov")
-                .jobTitle("PM")
-                .dateOfBirth(LocalDate.of(1999, 1 , 1))
-                .gender(Gender.MALE)
-                .department(Department.MANAGEMENT)
-                .build();
+        employee = new Employee(1L, "Petr", "Petrov", "PM", LocalDate.of(1999, 1, 1), Gender.MALE, Department.MANAGEMENT);
     }
 
     @Test
@@ -78,6 +69,15 @@ public class EmployeeServiceTest {
         //then
         then(employeeRepository).should(times(1)).findById(anyLong());
         assertNull(returnedAnswer);
+        verifyNoMoreInteractions(employeeRepository);
+    }
+
+    @Test
+    void deleteById() {
+        //when
+        employeeRepository.deleteById(1L);
+        //then
+        then(employeeRepository).should(times(1)).deleteById(anyLong());
         verifyNoMoreInteractions(employeeRepository);
     }
 

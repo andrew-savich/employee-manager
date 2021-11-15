@@ -1,8 +1,6 @@
 package com.andrewsavich.employeemanager.model;
 
-import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
@@ -10,7 +8,6 @@ import java.time.LocalDate;
 
 @Data
 @Table("employees")
-@Builder
 public class Employee {
     @Id
     private Long id;
@@ -20,4 +17,17 @@ public class Employee {
     private LocalDate dateOfBirth;
     private Gender gender;
     private Department department;
+
+    public Employee() {
+    }
+
+    public Employee(Long id, String firstName, String lastName, String jobTitle, LocalDate dateOfBirth, Gender gender, Department department) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.jobTitle = jobTitle;
+        this.dateOfBirth = dateOfBirth;
+        this.gender = gender;
+        this.department = department;
+    }
 }
