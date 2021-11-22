@@ -13,7 +13,7 @@ import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000/")
 @RestController
-@RequestMapping("/api/v1/employees")
+@RequestMapping(value = "/api/v1/employees", produces = "application/json")
 @Slf4j
 public class EmployeeController {
     @Autowired
@@ -40,10 +40,10 @@ public class EmployeeController {
         return employeeService.getEmployeeDepartments();
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Employee> getEmployeeById(@PathVariable Long id){
-        log.info("Controller: Getting employee with id: " + id);
-        Employee employee = employeeService.getEmployeeById(id);
+    @GetMapping("/{employeeId}")
+    public ResponseEntity<Employee> getEmployeeById(@PathVariable Long employeeId){
+        log.info("Controller: Getting employee with id: " + employeeId);
+        Employee employee = employeeService.getEmployeeById(employeeId);
         log.info("Controller: Sending employee: " + employee);
 
         return ResponseEntity.ok(employee);
@@ -63,11 +63,11 @@ public class EmployeeController {
         employeeService.updateEmployee(employee);
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteEmployeeById(@PathVariable Long id){
-        log.info("Controller: Deleting employee with id: " + id);
+    @DeleteMapping("/{employeeId}")
+    public void deleteEmployeeById(@PathVariable Long employeeId){
+        log.info("Controller: Deleting employee with id: " + employeeId);
 
-        employeeService.deleteEmployeeById(id);
+        employeeService.deleteEmployeeById(employeeId);
     }
 
 }
