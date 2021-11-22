@@ -13,13 +13,13 @@ import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000/")
 @RestController
-@RequestMapping("/employee-manager/api/employee")
+@RequestMapping("/api/v1/employees")
 @Slf4j
 public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
 
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity<List<Employee>> getEmployeesList(){
         log.info("Controller: Getting employee list");
 
@@ -28,19 +28,19 @@ public class EmployeeController {
 
     @GetMapping("/genders")
     public List<Gender> getGenderList(){
-        log.info("Controller: getting genders");
+        log.info("Controller: getting gender list");
 
         return employeeService.getEmployeeGenders();
     }
 
     @GetMapping("/departments")
     public List<Department> getDepartmentList(){
-        log.info("Controller: getting departments");
+        log.info("Controller: getting department list");
 
         return employeeService.getEmployeeDepartments();
     }
 
-    @GetMapping("/get/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Employee> getEmployeeById(@PathVariable Long id){
         log.info("Controller: Getting employee with id: " + id);
         Employee employee = employeeService.getEmployeeById(id);
@@ -49,21 +49,21 @@ public class EmployeeController {
         return ResponseEntity.ok(employee);
     }
 
-    @PostMapping("/create")
+    @PostMapping
     public void createEmployee(@RequestBody Employee employee){
         log.info("Controller: Got employee for creating: " + employee);
 
         employeeService.createEmployee(employee);
     }
 
-    @PutMapping("/update")
+    @PutMapping
     public void updateEmployee(@RequestBody Employee employee){
         log.info("Controller: Got employee for updating: " + employee);
 
         employeeService.updateEmployee(employee);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public void deleteEmployeeById(@PathVariable Long id){
         log.info("Controller: Deleting employee with id: " + id);
 
