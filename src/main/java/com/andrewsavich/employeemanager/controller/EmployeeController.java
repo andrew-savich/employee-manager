@@ -4,8 +4,14 @@ import com.andrewsavich.employeemanager.model.Department;
 import com.andrewsavich.employeemanager.model.Employee;
 import com.andrewsavich.employeemanager.model.Gender;
 import com.andrewsavich.employeemanager.service.EmployeeService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,19 +19,26 @@ import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000/")
 @RestController
-@RequestMapping(value = "/api/v1/employees", produces = "application/json")
+@RequestMapping(value = "/api/v1/employees", produces = MediaType.APPLICATION_JSON_VALUE)
 @Slf4j
 public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
 
+//    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Found the order", content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = Employee.class))}),
+//            @ApiResponse(responseCode = "409", description = "Employee not found", content = @Content)})
+
+    @ApiResponse(responseCode = "200", description = "Employees were found", content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = Employee.class))})
+    @Operation(summary = "Returns employee list")
     @GetMapping
     public ResponseEntity<List<Employee>> getEmployeesList(){
-        log.info("Controller: Getting employee list");
+        log.info("Controller: getting employee list");
 
         return ResponseEntity.ok(employeeService.getAllEmployees());
     }
 
+    @ApiResponse(responseCode = "200", description = "Genders were found", content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = Gender.class))})
+    @Operation(summary = "Returns employee gender list")
     @GetMapping("/genders")
     public List<Gender> getGenderList(){
         log.info("Controller: getting gender list");
@@ -33,6 +46,8 @@ public class EmployeeController {
         return employeeService.getEmployeeGenders();
     }
 
+    @ApiResponse(responseCode = "200", description = "Departments were found", content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = Department.class))})
+    @Operation(summary = "Returns employee department list")
     @GetMapping("/departments")
     public List<Department> getDepartmentList(){
         log.info("Controller: getting department list");
@@ -40,6 +55,9 @@ public class EmployeeController {
         return employeeService.getEmployeeDepartments();
     }
 
+    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Found the order", content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = Employee.class))}),
+            @ApiResponse(responseCode = "409", description = "Employee not found", content = @Content)})
+    @Operation(summary = "Returns employee by id")
     @GetMapping("/{employeeId}")
     public ResponseEntity<Employee> getEmployeeById(@PathVariable Long employeeId){
         log.info("Controller: Getting employee with id: " + employeeId);
@@ -49,6 +67,8 @@ public class EmployeeController {
         return ResponseEntity.ok(employee);
     }
 
+    @ApiResponse(responseCode = "200", description = "Employee was found", content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = Employee.class))})
+    @Operation(summary = "Create a new employee")
     @PostMapping
     public void createEmployee(@RequestBody Employee employee){
         log.info("Controller: Got employee for creating: " + employee);
@@ -56,6 +76,7 @@ public class EmployeeController {
         employeeService.createEmployee(employee);
     }
 
+    @Operation(summary = "Updates employee")
     @PutMapping
     public void updateEmployee(@RequestBody Employee employee){
         log.info("Controller: Got employee for updating: " + employee);
@@ -63,6 +84,7 @@ public class EmployeeController {
         employeeService.updateEmployee(employee);
     }
 
+    @Operation(summary = "Deletes employee by id")
     @DeleteMapping("/{employeeId}")
     public void deleteEmployeeById(@PathVariable Long employeeId){
         log.info("Controller: Deleting employee with id: " + employeeId);
