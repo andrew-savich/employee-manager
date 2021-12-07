@@ -64,7 +64,7 @@ public class EmployeeController {
     }
 
     @Operation(summary = "Creates a new employee")
-    @ApiResponse(responseCode = "200", description = "Employee was found", content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE)})
+    @ApiResponse(responseCode = "200", description = "Employee was created", content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE)})
     @PostMapping
     public void createEmployee(@RequestBody Employee employee){
         log.info("Controller: Got employee for creating: " + employee);
